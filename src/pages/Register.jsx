@@ -14,7 +14,7 @@ import { useNavigate, Link } from "react-router-dom";
 const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     // setLoading(true);
@@ -50,7 +50,7 @@ const Register = () => {
 
             //create empty user chats on firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            // navigate("/");
+            navigate("/");
           } catch (err) {
             console.log(err);
             setErr(true);
@@ -84,7 +84,7 @@ const Register = () => {
           <button>Sign up</button>
           {err && <span>Something went wrong</span>}
         </form>
-        <p>You do have an account? Login </p>
+        <p>You do have an account?<Link to="login">Login</Link>  </p>
       </div>
     </div>
   )
